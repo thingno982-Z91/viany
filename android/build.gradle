@@ -1,0 +1,25 @@
+// NOTE: Plugin versions (Android Gradle Plugin, Kotlin) are declared in
+// settings.gradle's `plugins {}` block, which is the modern Flutter (3.19+)
+// Gradle template style. This file intentionally does NOT redeclare them
+// via a `buildscript { dependencies { classpath ... } }` block — doing
+// both at once causes a duplicate-plugin-application conflict at build
+// time, which was a real bug in an earlier version of this project.
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

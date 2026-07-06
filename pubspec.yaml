@@ -1,0 +1,47 @@
+name: finance_statement_app
+description: تطبيق الشؤون المالية - بيان ومصروف
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  # Local persistent storage (structured, robust, no size practical limit
+  # for this app's data volume)
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.2
+
+  # PDF generation. The `printing` package includes PdfGoogleFonts, which
+  # fetches Arabic-capable fonts (e.g. Noto Naskh Arabic) on first use and
+  # caches them locally — no manual .ttf download needed.
+  pdf: ^3.10.7
+  printing: ^5.11.1
+
+  # Unique IDs
+  uuid: ^4.2.2
+
+  # Arabic-friendly date formatting / intl
+  intl: ^0.19.0
+
+  # Hijri calendar support
+  hijri: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  # No external font files required — the app uses Android's default
+  # system font (Roboto/Noto), which renders Arabic correctly with no
+  # extra setup. If you want to add "Cairo" later, drop the .ttf files
+  # into fonts/ and re-add a fonts: section here.
+  assets:
+    - assets/images/logo.png

@@ -1,0 +1,6 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Kept close to Flutter's recommended default rule set. Add or disable
+    # specific rules here if your team has stronger style preferences.

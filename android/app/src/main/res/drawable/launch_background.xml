@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shown briefly while the native Android view initializes, before
+     Flutter draws its first frame. Kept simple (solid background color
+     matching the app's palette) to avoid a jarring flash. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+</layer-list>
