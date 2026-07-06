@@ -1,6 +1,0 @@
-cd android
-gradle wrapper --gradle-version 8.4
-cd ..
-git add android/gradle/wrapper/gradle-wrapper.jar
-git commit -m "Add missing gradle-wrapper.jar"
-git push
