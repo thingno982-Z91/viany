@@ -1,0 +1,39 @@
+workflows:
+  android-release:
+    name: Finance Statement App - Android
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+      vars:
+        PACKAGE_NAME: "com.kushymh.finance_statement_app"
+    scripts:
+      - name: Ensure Gradle wrapper jar exists
+        script: |
+          set -e
+          WRAPPER_JAR="android/gradle/wrapper/gradle-wrapper.jar"
+          if [ ! -s "$WRAPPER_JAR" ]; then
+            echo "gradle-wrapper.jar missing or empty — fetching Gradle 8.4 wrapper jar"
+            curl -L -o "$WRAPPER_JAR" \
+              https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar
+          fi
+      - name: Set executable permissions
+        script: chmod +x android/gradlew
+      - name: Flutter pub get
+        script: flutter pub get
+      - name: Flutter analyze
+        script: flutter analyze || true
+      - name: Build APK (release)
+        script: flutter build apk --release
+      - name: Build App Bundle (release)
+        script: flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+      - build/app/outputs/bundle/release/*.aab
+      - build/app/outputs/**/mapping.txt
+    publishing:
+      email:
+        recipients: []
+        notify:
+          success: true
+          failure: true
